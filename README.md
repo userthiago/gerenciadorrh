@@ -3,4 +3,4 @@
   
   O projeto é um gerenciador simples com suporte ao Inglês com uma interface amigável para o registro de empresas e registro de funcionários destas empresas.
 
-** Posteriormente será feito diversas correções que não puderam ser feitas por conta da data limite da entrega do projeto.
+** Posteriormente será feita diversas correções que não puderam ser feitas por conta da data limite da entrega do projeto e será melhorada esta apresentação de projeto.
