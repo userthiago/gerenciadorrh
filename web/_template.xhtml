@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Cache-Control" content="no-cache"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta http-equiv="Expires" content="0"/>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
+        <f:view locale="#{idiomaBean.localizacao}" />
+        <title>#{msgs.tituloGerencia}</title>
+    </h:head>
+
+    <h:body>
+        <div id="top">
+            <h2>
+                <ui:insert name="top">#{msgs.titulo}</ui:insert>
+            </h2>
+        </div>
+        <div id="content-global">
+            <div id="left">
+                <ui:insert name="left">
+                    <h:form>
+                        <div class="userSeccion">
+                            <div class="userIntro">
+                                <div class="userInfo">
+                                    <div class="iconUser"></div>
+                                    <div class="nameUser"><h:outputText value="#{usuarioBean.usuario.nome}"/></div>
+                                    <div><h:outputText styleClass="cargo" value="#{usuarioBean.usuario.cargo}"/></div>
+                                    <div class="sairPerfil"><h:commandLink value="#{msgs.config}" action="/protected/configuracoes"/> / <h:commandLink value="#{msgs.sair}" action="#{funcionarioBean.sair}"/></div>
+
+                                </div>
+                            </div>
+                            
+                            <h:commandButton value="#{msgs.inicio}" styleClass="menuButton" action="/protected/gerenciamento"/>
+                            <div class="title">
+                                <h:outputText value="#{msgs.painelFuncionario}"/>
+                            </div>
+                            <h:commandButton value="#{msgs.cadastrar}" styleClass="menuButton" action="#{funcionarioBean.pag_cadastra}"/>
+                            <h:commandButton value="#{msgs.consultar}" styleClass="menuButton" action="#{funcionarioBean.pag_buscar}"/>                        
+                        </div>
+                        
+                        <div class="userSeccion">
+                            <div class="title">
+                                <h:outputText value="#{msgs.painelEmpresa}"/>
+                            </div>
+                            
+                            <h:commandButton value="#{msgs.cadastrar}" styleClass="menuButton" action="#{empresaBean.pag_cadastra}"/>
+                            <h:commandButton value="#{msgs.consultar}" styleClass="menuButton" action="#{empresaBean.pag_buscar}"/>                        
+                        </div>
+                    </h:form>
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+        <div id="bottom">
+            <ui:insert name="bottom">#{msgs.grupo}</ui:insert>
+        </div>
+
+    </h:body>
+</html>

@@ -1,0 +1,67 @@
+body {
+    background-color: #222222;
+    font-size: 12px;
+    font-family: "Helvetica Neue",sans-serif;
+    color: #000000;  
+    margin: 0px;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #363636;
+}
+
+a:link, a:visited {
+  color: #045491;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: #045491;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+.tabela {
+    border-spacing: 1px;
+    border: thin solid black;
+    margin: 20px auto;
+    width: 100%;
+    font-size: 15px;
+}
+
+.tabelaHeader {
+    text-align: center;
+    font-style: italic;
+    color: snow;
+    background: #5b5b5b;
+    padding: 5px;
+}
+
+.tabelaCaption {
+    text-align: left;
+    font-weight: bold;
+    color: Snow;
+    background-image: linear-gradient(to bottom, #353535, #222222);
+    padding: 10px;
+    border-radius: 6px 6px 0 0
+}
+
+.linhaPar {
+    height: 4em;
+    text-align: center;
+    background: #bebebe;
+}
+
+.linhaImpar {
+    height: 4em;
+    text-align: center;
+    background: #929292;
+}
+

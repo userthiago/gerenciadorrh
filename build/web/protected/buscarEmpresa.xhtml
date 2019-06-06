@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
+
+    <ui:define name="content">
+        <div class="content-inside">
+                <h1><h:outputText value="#{msgs.buscarEmpresa}"/></h1>
+                <h:form>
+                    <div class="search-area">
+                        <h:inputText value="#{empresaBean.conteudo_busca}" styleClass="bar-search" p:placeholder="#{msgs.mensagemBuscaEmpresa}"/>
+                        <h:commandButton value="" class="fas fa-search, button-search" action="#{empresaBean.consultar}"/>
+                    </div>
+                    <h:dataTable value="#{empresaBean.empresas}" var="_empresa"          
+                             styleClass="tabela" captionClass="tabelaCaption" 
+                             headerClass="tabelaHeader" 
+                             rowClasses="linhaPar, linhaImpar">
+                    <f:facet name="caption">#{msgs.empresas}</f:facet>
+                    <h:column>
+                        <f:facet name="header">#{msgs.cnpj}</f:facet>
+                        <h:commandLink value="#{_empresa.cnpj}" action="#{empresaBean.pag_view(_empresa)}"/>
+                    </h:column>    
+                    <h:column>
+                        <f:facet name="header">#{msgs.razaoSocial}</f:facet>
+                        <h:outputText value="#{_empresa.razao_social}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msgs.nomeFantasia}</f:facet>
+                        <h:outputText value="#{_empresa.nome_fantasia}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msgs.proprietario}</f:facet>
+                        <h:outputText value="#{_empresa.proprietario}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">E-Mail</f:facet>
+                        <h:outputText value="#{_empresa.email}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
+    </ui:define>
+    
+</ui:composition>

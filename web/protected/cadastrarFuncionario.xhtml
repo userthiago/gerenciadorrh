@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/_template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="content">
+        <div class="content-inside">
+            <h1><h:outputText value="Cadastramento de Funcionário"/></h1>
+            
+            <h:messages globalOnly="false" styleClass="form-error"/>
+            
+            <h:form>
+                <div class="form-box">
+                    <h2><h:outputText value="#{msgs.dadosPessoais}"/></h2>
+                    <h:panelGrid columns="4" styleClass="form-content" columnClasses="form-column">
+                        <h:outputLabel value="#{msgs.matricula}:" for="matricula"/>
+                        <h:inputText value="#{funcionarioBean.funcionario.matricula}" styleClass="cadastro-inputText" label="matricula" id="matricula" required="true" requiredMessage="#{msgs.matriculaObrigatoria}" maxlength="10" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
+                        <h:column/>
+                        <h:column/>
+                        <h:outputLabel value="#{msgs.nome}:" for="nome"/>
+                        <h:inputText value="#{funcionarioBean.funcionario.nome}" styleClass="cadastro-inputText" style="margin-right: 10px;" label="nome" id="nome" required="true" requiredMessage="#{msgs.nomeObrigatorio}"/>
+                        <h:outputLabel value="#{msgs.sobrenome}:" for="sobrenome"/>
+                        <h:inputText value="#{funcionarioBean.funcionario.sobrenome}" styleClass="cadastro-inputText" label="sobrenome" required="true" requiredMessage="#{msgs.sobrenomeObrigatorio}"/>
+                        <h:outputLabel value="#{msgs.sexo}:" for="sexo"/>
+                        <h:selectOneMenu value="#{funcionarioBean.funcionario.sexo}" styleClass="cadastro-inputText" id="sexo" required="true" requiredMessage="#{msgs.sexoObrigatorio}">
+                            <f:selectItem itemLabel="#{msgs.selecione}" noSelectionOption="true"/>
+                            <f:selectItem itemValue="M" itemLabel="#{msgs.masculino}"/>
+                            <f:selectItem itemValue="F" itemLabel="#{msgs.feminino}"/>
+                            <f:selectItem itemValue="N" itemLabel="#{msgs.n}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="#{msgs.rg}:" for="rg"/>
+                        <h:inputText value="#{funcionarioBean.funcionario.rg}" styleClass="cadastro-inputText" label="rg" required="true" requiredMessage="#{msgs.rgObrigatorio}" maxlength="12" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
+                        <h:outputLabel value="#{msgs.cpf}:" for="CPF"/>
+                        <h:inputText value="#{funcionarioBean.funcionario.cpf}" styleClass="cadastro-inputText" label="cpf" required="true" requiredMessage="#{msgs.cpfObrigatorio}" maxlength="12" p:placeHolder="___.___.___-__" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
+                        <h:outputLabel value="#{msgs.nomePai}:" for="nome_pai"/>
+                        <h:inputText value="#{funcionarioBean.funcionario.nome_pai}" styleClass="cadastro-inputText" label="nome_pai" required="true" requiredMessage="#{msgs.nomePaiObrigatorio}"/>
+                        <h:outputLabel value="#{msgs.nomeMae}:" for="nome_mae"/>
+                        <h:inputText value="#{funcionarioBean.funcionario.nome_mae}" styleClass="cadastro-inputText" label="nome_mae" required="true" requiredMessage="#{msgs.nomeMaeObrigatorio}"/>
+                        <h:outputLabel value="#{msgs.dataNascimento}:" for="nascimento"/>
+                        <h:inputText value="#{funcionarioBean.funcionario.nascimento}" styleClass="cadastro-inputText" label="nascimento" required="true" requiredMessage="#{msgs.dataNascimentoObrigatorio}" p:type="date" p:placeHolder="aaaa-mm-dd">
+                            <f:convertDateTime pattern="yyyy-MM-dd" locale="pt_BR"
+				timeZone="America/Sao_Paulo"/>
+                        </h:inputText>
+                        <h:outputLabel value="#{msgs.estadoCivil}:" for="estado_civil"/>
+                        <h:selectOneMenu value="#{funcionarioBean.funcionario.estado_civil}" styleClass="cadastro-inputText" id="estado_civil" required="true" requiredMessage="#{msgs.estadoCivilObrigatorio}">
+                            <f:selectItem itemLabel="#{msgs.selecione}" noSelectionOption="true"/>
+                            <f:selectItem itemValue="#{msgs.solteiro}" itemLabel="#{msgs.solteiro}"/>
+                            <f:selectItem itemValue="#{msgs.casado}" itemLabel="#{msgs.casado}"/>
+                            <f:selectItem itemValue="#{msgs.separado}" itemLabel="#{msgs.separado}"/>
+                            <f:selectItem itemValue="#{msgs.divorciado}" itemLabel="#{msgs.divorciado}"/>
+                            <f:selectItem itemValue="#{msgs.viuvo}" itemLabel="#{msgs.viuvo}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="#{msgs.nacionalidade}:" for="nacionalidade"/>
+                        <h:inputText value="#{funcionarioBean.funcionario.nacionalidade}" styleClass="cadastro-inputText" label="nacionalidade"  required="true" requiredMessage="#{msgs.nacionalidadeObrigatoria}"/>
+                        <h:outputLabel value="#{msgs.grauInstrucao}:" for="grau_instrucao"/>
+                        <h:selectOneMenu value="#{funcionarioBean.funcionario.grau_instrucao}" styleClass="cadastro-inputText" id="grau_instrucao" required="true" requiredMessage="#{msgs.grauInstrucaoObrigatorio}">
+                            <f:selectItem itemLabel="#{msgs.selecione}" noSelectionOption="true"/>
+                            <f:selectItem itemValue="#{msgs.analfabeto}" itemLabel="#{msgs.analfabeto}"/>
+                            <f:selectItem itemValue="#{msgs.fundamentalIncompleto}" itemLabel="#{msgs.fundamentalIncompleto}"/>
+                            <f:selectItem itemValue="#{msgs.fundamentalCompleto}" itemLabel="#{msgs.fundamentalCompleto}"/>
+                            <f:selectItem itemValue="#{msgs.medioIncompleto}" itemLabel="#{msgs.medioIncompleto}"/>
+                            <f:selectItem itemValue="#{msgs.medioCompleto}" itemLabel="#{msgs.medioCompleto}"/>
+                            <f:selectItem itemValue="#{msgs.superiorCompleto}" itemLabel="#{msgs.superiorCompleto}"/>
+                            <f:selectItem itemValue="#{msgs.posGraduacao}" itemLabel="#{msgs.posGraduacao}"/>
+                            <f:selectItem itemValue="#{msgs.mestrado}" itemLabel="#{msgs.mestrado}"/>
+                            <f:selectItem itemValue="#{msgs.doutorado}" itemLabel="#{msgs.doutorado}"/>
+                            <f:selectItem itemValue="#{msgs.posDoutorado}" itemLabel="#{msgs.posDoutorado}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="#{msgs.raca}:" for="raca"/>
+                        <h:selectOneMenu value="#{funcionarioBean.funcionario.raca}" styleClass="cadastro-inputText" id="raca" required="true" requiredMessage="#{msgs.racaObrigatoria}">
+                            <f:selectItem itemLabel="#{msgs.selecione}" noSelectionOption="true"/>
+                            <f:selectItem itemValue="#{msgs.branco}" itemLabel="#{msgs.branco}"/>
+                            <f:selectItem itemValue="#{msgs.pardo}" itemLabel="#{msgs.pardo}"/>
+                            <f:selectItem itemValue="#{msgs.preto}" itemLabel="#{msgs.preto}"/>
+                            <f:selectItem itemValue="#{msgs.amarelo}" itemLabel="#{msgs.amarelo}"/>
+                            <f:selectItem itemValue="#{msgs.indigena}" itemLabel="#{msgs.indigena}"/>
+                            <f:selectItem itemValue="#{msgs.ignorado}" itemLabel="#{msgs.ignorado}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                </div>
+                
+                <div class="form-box">
+                    <h2><h:outputText value="#{msgs.dadosContato}"/></h2>
+                    <div class="form-endereco">
+                        <h:panelGrid columns="4" styleClass="form-content" style="margin: 0;" columnClasses="form-column">
+                            <h:outputLabel value="#{msgs.cep}:" for="cep" style="margin-right: 85px;"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.cep}" styleClass="cadastro-inputText" style="width: 76px;" id="cep" p:placeHolder="_____-___" maxlength="8" required="true" requiredMessage="#{msgs.cepObrigatorio}"/>
+                            <h:column/><h:column/>
+                            <h:outputLabel value="#{msgs.endereco}:" for="endereco"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.endereco}" styleClass="cadastro-inputText" style="min-width: 372px;" id="endereco" required="true" requiredMessage="#{msgs.enderecoObrigatorio}"/>
+                            <h:outputLabel value="#{msgs.numero}:" for="numero" style="margin-right: 9px;"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.endereco_numero}" styleClass="cadastro-inputText" style="width: 50px;" id="numero" required="true" requiredMessage="#{msgs.numeroObrigatorio}"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="4" styleClass="form-content" style="margin: 0;" columnClasses="form-column">
+                            <h:outputLabel value="#{msgs.complemento}:" for="complemento"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.endereco_complemento}" styleClass="cadastro-inputText" style="width: 190px;" id="complemento"/>
+                            <h:outputLabel value="#{msgs.bairro}:" for="bairro" style="margin-right: 9px;"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.bairro}" styleClass="cadastro-inputText" id="bairro" required="true" requiredMessage="#{msgs.bairroObrigatorio}"/>
+                            <h:outputLabel value="#{msgs.cidade}:" for="cidade"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.cidade}" styleClass="cadastro-inputText" style="width: 190px;" id="cidade" required="true" requiredMessage="#{msgs.cidadeObrigatoria}"/>
+                            <h:outputLabel value="#{msgs.estado}:" for="estado"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.estado}" styleClass="cadastro-inputText" id="estado" required="true" requiredMessage="#{msgs.estadoObrigatorio}"/>
+                            <h:outputLabel value="#{msgs.celular}:" for="telefone_celular"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.telefone_celular}" styleClass="cadastro-inputText" style="width: 190px;" id="telefone_celular"/>
+                            <h:outputLabel value="#{msgs.fixo}:" for="telefone_fixo"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.telefone_fixo}" styleClass="cadastro-inputText" id="telefone_fixo"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" styleClass="form-content" style="margin: 0;" columnClasses="form-column">
+                            <h:outputLabel value="#{msgs.email}:" for="email" style="margin-right: 67px;"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.email}" styleClass="cadastro-inputText" style="width: 290px;" id="email" required="true" requiredMessage="#{msgs.emailObrigatorio}"/>
+                        </h:panelGrid>
+                    </div>
+                </div>
+                
+                <div class="form-box">
+                    <h2><h:outputText value="#{msgs.dadosEmpresa}"/></h2>
+                    <div class="form-endereco">
+                        <h:panelGrid columns="4" styleClass="form-content" style="margin: 0;" columnClasses="form-column">
+                            <h:outputLabel value="#{msgs.dataContratacao}:" for="data_contratacao"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.data_contratacao}" styleClass="cadastro-inputText" id="data_contratacao" required="true" requiredMessage="#{msgs.dataContratacaoObrigatoria}" p:type="date" p:placeHolder="aaaa-mm-dd">
+                                <f:convertDateTime pattern="yyyy-MM-dd"/>
+                            </h:inputText>
+                            <h:outputLabel value="#{msgs.tipoContratacao}:" for="tipo_contratacao"/>
+                            <h:selectOneMenu value="#{funcionarioBean.funcionario.tipo_contratacao}" styleClass="cadastro-inputText" id="tipo_contratacao" required="true" requiredMessage="#{msgs.tipoContratacaoObrigatoria}">
+                                <f:selectItem itemLabel="#{msgs.selecione}" noSelectionOption="true"/>
+                                <f:selectItem itemValue="#{msgs.clt}" itemLabel="#{msgs.clt}"/>
+                                <f:selectItem itemValue="#{msgs.pj}" itemLabel="#{msgs.pj}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{msgs.periodo}:" for="periodo_atuacao"/>
+                            <h:selectOneMenu value="#{funcionarioBean.funcionario.periodo_atuacao}" styleClass="cadastro-inputText" id="periodo_atuacao" required="true" requiredMessage="#{msgs.periodoObrigatorio}">
+                                <f:selectItem itemLabel="#{msgs.selecione}" noSelectionOption="true"/>
+                                <f:selectItem itemValue="#{msgs.manha}" itemLabel="#{msgs.manha}"/>
+                                <f:selectItem itemValue="#{msgs.tarde}" itemLabel="#{msgs.tarde}"/>
+                                <f:selectItem itemValue="#{msgs.noite}" itemLabel="#{msgs.noite}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{msgs.cargo}:" for="cargo" style="margin-right: 9px;"/>
+                            <h:inputText value="#{funcionarioBean.funcionario.cargo}" styleClass="cadastro-inputText" id="cargo" required="true" requiredMessage="#{msgs.cargoObrigatorio}"/>
+                            <h:outputLabel value="#{msgs.empresa}:" for="empresa"/>
+                            <h:selectOneMenu value="#{funcionarioBean.funcionario.id_empresa}" styleClass="cadastro-inputText" id="empresa" required="true" requiredMessage="#{msgs.empresaObrigatoria}">
+                                <f:selectItems value="#{empresaBean.listar_empresas()}" var="empresa" itemValue="#{empresa.value}" itemLabel="#{empresa.label}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                    </div>
+                </div>
+                
+                <h:panelGrid columns="2" styleClass="form-content">
+                    <h:commandButton value="#{msgs.cadastrar}" styleClass="button-form" action="#{funcionarioBean.cadastrar(usuarioBean.usuario.id)}"/>
+                    <h:commandButton value="#{msgs.cancelar}" styleClass="button-form" action="#{funcionarioBean.retornar(1)}" immediate="true"/>
+                </h:panelGrid>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

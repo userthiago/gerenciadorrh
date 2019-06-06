@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/_template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="content">
+        <div class="content-inside">
+            <h1><h:outputText value="#{msgs.cadastroEmpresa}"/></h1>
+            
+            <h:messages globalOnly="false" styleClass="form-error"/>
+            
+            <h:form>
+                <div class="form-box">
+                    <h2><h:outputText value="#{msgs.dadosEmpresa}"/></h2>
+                    <h:panelGrid columns="2" styleClass="form-content" columnClasses="form-column">
+                        <h:outputLabel value="#{msgs.cnpj}:" for="cnpj"/>
+                        <h:inputText value="#{empresaBean.empresa.cnpj}" styleClass="cadastro-inputText" style="max-width: 119px;" p:placeHolder="__.___.___/____-__" label="cnpj" id="cnpj" required="true" requiredMessage="#{msgs.cnpjObrigatorio}" maxlength="14" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;">
+                            	<f:validateLength minimum="14" maximum="14" />
+                        </h:inputText>
+                        <h:outputLabel value="#{msgs.razaoSocial}:" for="razao_social"/>
+                        <h:inputText value="#{empresaBean.empresa.razao_social}" styleClass="cadastro-inputText" id="razao_social" required="true" maxlength="60" requiredMessage="#{msgs.razaoSocialObrigatoria}"/>
+                        <h:outputLabel value="#{msgs.nomeFantasia}:" for="nome_fantasia"/>
+                        <h:inputText value="#{empresaBean.empresa.nome_fantasia}" styleClass="cadastro-inputText" id="nome_fantasia"/>
+                        <h:outputLabel value="#{msgs.proprietario}:" for="proprietario"/>
+                        <h:inputText value="#{empresaBean.empresa.proprietario}" styleClass="cadastro-inputText" id="proprietario"/>
+                    </h:panelGrid>
+                </div>
+                
+                <div class="form-box">
+                    <h2><h:outputText value="#{msgs.dadosContato}"/></h2>
+                    <div class="form-endereco">
+                        <h:panelGrid columns="4" styleClass="form-content" style="margin: 0;" columnClasses="form-column">
+                            <h:outputLabel value="#{msgs.cep}:" for="cep" style="margin-right: 85px;" />
+                            <h:inputText value="#{empresaBean.empresa.cep}" styleClass="cadastro-inputText" style="width: 76px;" id="cep" p:placeHolder="_____-___" maxlength="8" required="true" requiredMessage="#{msgs.cepObrigatorio}" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;">
+                                <f:validateLength minimum="8" maximum="8" />
+                            </h:inputText>
+                            <h:column/><h:column/>
+                            <h:outputLabel value="#{msgs.endereco}:" for="endereco"/>
+                            <h:inputText value="#{empresaBean.empresa.endereco}" styleClass="cadastro-inputText" style="min-width: 372px;" id="endereco" required="true" requiredMessage="#{msgs.enderecoObrigatorio}"/>
+                            <h:outputLabel value="#{msgs.numero}:" for="numero" style="margin-right: 9px;"/>
+                            <h:inputText value="#{empresaBean.empresa.endereco_numero}" styleClass="cadastro-inputText" style="width: 50px;" id="numero" required="true" requiredMessage="#{msgs.numeroObrigatorio}"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="4" styleClass="form-content" style="margin: 0;" columnClasses="form-column">
+                            <h:outputLabel value="#{msgs.complemento}:" for="complemento"/>
+                            <h:inputText value="#{empresaBean.empresa.endereco_complemento}" styleClass="cadastro-inputText" style="width: 190px;" id="complemento"/>
+                            <h:outputLabel value="#{msgs.bairro}:" for="bairro" style="margin-right: 9px;"/>
+                            <h:inputText value="#{empresaBean.empresa.bairro}" styleClass="cadastro-inputText" id="bairro" required="true" requiredMessage="#{msgs.bairroObrigatorio}"/>
+                            <h:outputLabel value="#{msgs.cidade}:" for="cidade"/>
+                            <h:inputText value="#{empresaBean.empresa.cidade}" styleClass="cadastro-inputText" style="width: 190px;" id="cidade" required="true" requiredMessage="#{msgs.cidadeObrigatoria}"/>
+                            <h:outputLabel value="#{msgs.estado}:" for="estado"/>
+                            <h:inputText value="#{empresaBean.empresa.estado}" styleClass="cadastro-inputText" id="estado" required="true" requiredMessage="#{msgs.estadoObrigatorio}"/>
+                            <h:outputLabel value="#{msgs.celular}:" for="telefone_celular"/>
+                            <h:inputText value="#{empresaBean.empresa.telefone}" styleClass="cadastro-inputText" style="width: 190px;" id="telefone_celular" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;">
+                                    <f:validateLength minimum="10" maximum="11" />
+                            </h:inputText>
+                            <h:column/>
+                            <h:column/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" styleClass="form-content" style="margin: 0;" columnClasses="form-column">
+                            <h:outputLabel value="#{msgs.email}:" for="email" style="margin-right: 67px;"/>
+                            <h:inputText value="#{empresaBean.empresa.email}" styleClass="cadastro-inputText" style="width: 290px;" id="email" required="true" requiredMessage="#{msgs.emailObrigatorio}"/>
+                        </h:panelGrid>
+                    </div>
+                </div>
+                
+                <h:panelGrid columns="2" styleClass="form-content">
+                    <h:commandButton value="#{msgs.cadastrar}" styleClass="button-form" action="#{empresaBean.cadastrar(usuarioBean.usuario.id)}"/>
+                    <h:commandButton value="#{msgs.cancelar}" styleClass="button-form" action="#{empresaBean.retornar(1)}" immediate="true"/>
+                </h:panelGrid>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

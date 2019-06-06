@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./_templateLogin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"                
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="content">
+        <div class="login-left"></div>
+        <h:form styleClass="form">
+            <h:panelGrid columns="1" styleClass="form-container">
+                <h:outputLabel value="#{msgs.tituloLogin}" styleClass="login-title" for="login"/>
+                <h:inputText value="#{usuarioBean.usuario.login}" styleClass="inputText" style="margin-top: 20px;" label="login" id="login" p:placeHolder="#{msgs.usuario}" required="true" requiredMessage="É necessário inserir um usuário."/>
+                <div>
+                    <h:message for="login" styleClass="erro"/>
+                </div>
+                <h:inputSecret value="#{usuarioBean.usuario.senha}" styleClass="inputText" style="margin-top: 5px;" label="senha" id="senha" p:placeHolder="#{msgs.senha}" required="true" requiredMessage="É necessário inserir uma senha."/>
+                <div>
+                    <h:message for="senha" styleClass="erro"/>
+                </div>
+                <h:commandButton value="#{msgs.entrar}" class="button-form" action="#{usuarioBean.autenticar}"/>
+            </h:panelGrid>
+            <div class="erroLogin">
+            <h:messages globalOnly="true" styleClass="erro"/>
+            </div>
+        </h:form>
+        
+    </ui:define>
+
+</ui:composition>

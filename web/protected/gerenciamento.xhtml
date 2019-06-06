@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/_template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"                
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+            <ui:define name="content">
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{empresaBean.suas_empresas(usuarioBean.usuario.id)}"/>
+                    <f:event type="preRenderView" listener="#{funcionarioBean.seus_funcionarios(usuarioBean.usuario.id)}"/>
+                </f:metadata>
+                <div class="content-inside">
+                    <h1><h:outputText value="#{msgs.bemVindo}"/></h1>
+                    <div>
+                        <h:form>
+                            <div>
+                            <h:dataTable value="#{empresaBean.empresas}" var="_empresa"          
+                                     styleClass="tabela" captionClass="tabelaCaption" 
+                                     headerClass="tabelaHeader" 
+                                     rowClasses="linhaPar, linhaImpar">
+                                <f:facet name="caption">#{msgs.suasEmpresas}</f:facet>
+                                <h:column>
+                                    <f:facet name="header">#{msgs.cnpj}</f:facet>
+                                    <h:commandLink value="#{_empresa.cnpj}" action="#{empresaBean.pag_view(_empresa)}"/>
+                                </h:column>    
+                                <h:column>
+                                    <f:facet name="header">#{msgs.razaoSocial}</f:facet>
+                                    <h:outputText value="#{_empresa.razao_social}"/>
+                                </h:column>
+                            </h:dataTable>
+                            </div>
+                            <div>
+                            <h:dataTable value="#{funcionarioBean.funcionarios}" var="_funcionario"          
+                                 styleClass="tabela" captionClass="tabelaCaption" 
+                                 headerClass="tabelaHeader" 
+                                 rowClasses="linhaPar, linhaImpar">
+                                <f:facet name="caption">#{msgs.seusFuncionarios}</f:facet>
+                                <h:column>
+                                    <f:facet name="header">#{msgs.matricula}</f:facet>
+                                    <h:commandLink value="#{_funcionario.matricula}" action="#{funcionarioBean.pag_view(_funcionario)}"/>
+                                </h:column>    
+                                <h:column>
+                                    <f:facet name="header">#{msgs.nome}</f:facet>
+                                    <h:outputText value="#{_funcionario.nome} #{_funcionario.sobrenome}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{msgs.cargo}</f:facet>
+                                    <h:outputText value="#{_funcionario.cargo}"/>
+                                </h:column>
+                            </h:dataTable>
+                            </div>
+                        </h:form>
+                        
+                    </div>
+                </div>
+            </ui:define>
+</ui:composition>
