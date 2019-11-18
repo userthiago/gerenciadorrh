@@ -9,8 +9,8 @@ import java.util.logging.Logger;
 public class ConnectionFactory {
 //    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/gerenciamentoRH?useTimezone=true&serverTimezone=UTC";
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/gerenciamentoRH";
-    private static final String DATABASE_USER = "INSIRA SEU USUARIO DA DATABASE";
-    private static final String DATABASE_PASSWORD = "INSIRA SUA SENHA DA DATABASE";
+    private static final String DATABASE_USER = "root";
+    private static final String DATABASE_PASSWORD = "sql@261795";
     
     public static Connection getConnection() throws SQLException {
         try {
