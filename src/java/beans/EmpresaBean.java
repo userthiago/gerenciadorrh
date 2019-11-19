@@ -2,13 +2,16 @@ package beans;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
+import model.DAO;
 import model.Empresa;
 import model.EmpresaDAO;
 
@@ -22,9 +25,16 @@ public class EmpresaBean implements Serializable {
     
     private String conteudo_busca;
     
+    @Inject
+    private DAO<Empresa> dao;
+    
     public EmpresaBean() {
     }
-
+    
+    @PostConstruct
+    public void init() {
+        empresas = dao.listarGenerico("Empresa.listarTodas");
+    }
     public Empresa getEmpresa() {
         return empresa;
     }
@@ -50,26 +60,31 @@ public class EmpresaBean implements Serializable {
     }
     
     public List<SelectItem> listar_empresas() throws SQLException {
-        EmpresaDAO dao = new EmpresaDAO();
-        return dao.getEmpresas();
+//        EmpresaDAO dao = new EmpresaDAO();
+//        return dao.getEmpresas();
+        List<SelectItem> lista = new ArrayList<>();
+        empresas = dao.listarGenerico("Empresa.listarTodas");
+        for (Empresa c : empresas) {
+            lista.add(new SelectItem(c.getId_empresa(), c.getRazao_social()));
+        }
+        return lista;
+    }
+    
+    public String pag_cadastra() {
+        empresa = new Empresa();
+        return "/protected/cadastrarEmpresa";
     }
     
     public String cadastrar(int criador) throws SQLException {
-        EmpresaDAO dao = new EmpresaDAO();
-        empresa.setId_criador(criador);
-        if(dao.cadastraEmpresa(empresa)) {
-            FacesMessage message = new FacesMessage("Empresa inserida no sistema com sucesso!");
-            message.setSeverity(FacesMessage.SEVERITY_INFO);
-            FacesContext.getCurrentInstance().addMessage(null, message);
-        }
-        else {
-           FacesMessage message = new FacesMessage("Empresa com cnpj " + empresa.getCnpj() + " já se encontra registrada no sistema.");
-           message.setSeverity(FacesMessage.SEVERITY_INFO);
-           FacesContext.getCurrentInstance().addMessage(null, message);
-        }
+        dao.adicionar(empresa);
+        empresa = new Empresa();
         return null;
     }
     
+    public boolean isANumber(String strNum) {
+        return strNum.matches("\\d+");    
+    }
+        
     public String consultar() throws SQLException {
         EmpresaDAO cdao = new EmpresaDAO();
         empresas = cdao.consultar(conteudo_busca);
@@ -79,11 +94,6 @@ public class EmpresaBean implements Serializable {
     public String pag_view(Empresa _empresa) {
         empresa = _empresa;
         return "/protected/viewEmpresa";
-    }
-    
-    public String pag_cadastra() {
-        empresa = new Empresa();
-        return "/protected/cadastrarEmpresa";
     }
     
     public void suas_empresas(int id) throws SQLException, Exception {
@@ -106,14 +116,12 @@ public class EmpresaBean implements Serializable {
     }
     
     public String alterar() throws SQLException {
-        EmpresaDAO edao = new EmpresaDAO();
-        edao.alterar(empresa);
+        dao.alterar(empresa);
         return "/protected/viewEmpresa";
     }
     
     public String excluir(Empresa e) throws SQLException {
-        EmpresaDAO edao = new EmpresaDAO();
-        edao.excluir(e.getCnpj());
+        dao.excluir(e.getId_empresa());
         empresas.remove(e);
         return "/protected/buscarEmpresa";
     }

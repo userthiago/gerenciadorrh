@@ -12,13 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/thiag/Desktop/Ciro/gerenciamentoRH/web/resources/javascript/form-empresa.js</file>
-            <file>file:/C:/Users/thiag/Desktop/Ciro/gerenciamentoRH/web/protected/viewEmpresa.xhtml</file>
-            <file>file:/C:/Users/thiag/Desktop/Ciro/gerenciamentoRH/src/java/beans/FuncionarioBean.java</file>
-            <file>file:/C:/Users/thiag/Desktop/Ciro/gerenciamentoRH/src/java/beans/EmpresaBean.java</file>
-            <file>file:/C:/Users/thiag/Desktop/Ciro/gerenciamentoRH/web/protected/cadastrarEmpresa.xhtml</file>
-            <file>file:/C:/Users/thiag/Desktop/Ciro/gerenciamentoRH/web/protected/buscarEmpresa.xhtml</file>
-            <file>file:/C:/Users/thiag/Desktop/Ciro/gerenciamentoRH/src/java/model/EmpresaDAO.java</file>
+            <file>file:/C:/Users/T-Gamer/Desktop/GerenciadorRH%20-%20Modificado/gerenciadorrh/src/java/model/Empresa.java</file>
+            <file>file:/C:/Users/T-Gamer/Desktop/GerenciadorRH%20-%20Modificado/gerenciadorrh/src/java/model/DAO.java</file>
+            <file>file:/C:/Users/T-Gamer/Desktop/GerenciadorRH%20-%20Modificado/gerenciadorrh/src/java/model/EmpresaDAO.java</file>
+            <file>file:/C:/Users/T-Gamer/Desktop/GerenciadorRH%20-%20Modificado/gerenciadorrh/src/java/gerenciamentorh/model/entity/Empresa.java</file>
+            <file>file:/C:/Users/T-Gamer/Desktop/GerenciadorRH%20-%20Modificado/gerenciadorrh/src/java/beans/EmpresaBean.java</file>
         </group>
     </open-files>
 </project-private>

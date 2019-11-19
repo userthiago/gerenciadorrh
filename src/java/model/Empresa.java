@@ -6,7 +6,7 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class Empresa implements Serializable{
     
-    private int id_empresa;
+    private Long id_empresa;
     private String cnpj;
     private String nome_fantasia;
     private String razao_social;
@@ -26,16 +26,16 @@ public class Empresa implements Serializable{
         
     }
     
-    public Empresa(int _id_empresa, String _razao_social) {
+    public Empresa(Long _id_empresa, String _razao_social) {
         this.id_empresa = _id_empresa;
         this.razao_social = _razao_social;
     }
     
-    public int getId_empresa() {
+    public Long getId_empresa() {
         return id_empresa;
     }
 
-    public void setId_empresa(int id) {
+    public void setId_empresa(Long id) {
         this.id_empresa = id;
     }
 
