@@ -24,7 +24,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Empresa.listarTodas", query = "SELECT * FROM empresas"),
     @NamedQuery(name = "Empresa.listarPorRazaoSocial", query = "SELECT e FROM Empresa e WHERE e.razao_social LIKE ?1"),
-    @NamedQuery(name = "Empresa.listarPorCNPJ", query = "SELECT e FROM Empresa e WHERE e.cnpj LIKE ?1")
+    @NamedQuery(name = "Empresa.listarPorCNPJ", query = "SELECT e FROM Empresa e WHERE e.cnpj LIKE ?1"),
+    @NamedQuery(name = "Empresa.listarSuasEmpresas", query = "SELECT * FROM empresas WHERE id_criador = ?")    
 })
 public class Empresa extends AbstractEntity {
 
